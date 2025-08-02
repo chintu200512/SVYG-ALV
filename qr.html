@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Code - Sri Vinayaka Youth Group</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Montserrat:wght@400;600;700&display=swap" rel="stylesheet">
+</head>
+<style>
+    :root {
+        --primary-color: #FFD700;
+        --secondary-color: #FF9933;
+        --dark-color: #1a1a1a;
+        --light-color: #f8f8f8;
+        --accent-color: #4CAF50;
+        --text-color: #333;
+    }
+
+    @keyframes gradientAnimation {
+        0% { background-position: 0% 50%; }
+        50% { background-position: 100% 50%; }
+        100% { background-position: 0% 50%; }
+    }
+
+    @keyframes float {
+        0% { transform: translateY(0px); }
+        50% { transform: translateY(-15px); }
+        100% { transform: translateY(0px); }
+    }
+
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+
+    @keyframes slideInLeft {
+        from { transform: translateX(-50px); opacity: 0; }
+        to { transform: translateX(0); opacity: 1; }
+    }
+
+    @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+    }
+
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    body {
+        font-family: 'Poppins', sans-serif;
+        background: linear-gradient(-45deg, #f5f7fa, #e4e8f0, #f5f7fa, #e4e8f0);
+        background-size: 400% 400%;
+        animation: gradientAnimation 15s ease infinite;
+        color: var(--text-color);
+        margin: 0;
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        line-height: 1.6;
+        text-align: center;
+    }
+
+    .back-btn {
+        position: relative;
+        display: inline-block;
+        padding: 1rem 2rem;
+        margin: 2rem auto;
+        background: var(--primary-color);
+        color: var(--dark-color);
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+        font-size: 1rem;
+        box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+        animation: fadeIn 1s ease-in-out;
+    }
+
+    .back-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 20px rgba(159, 222, 238, 0.897);
+        background: #111111;
+        color: #f5f7fa;
+    }
+
+    .back-btn i {
+        margin-right: 8px;
+        transition: transform 0.3s ease;
+    }
+
+    .back-btn:hover i {
+        transform: rotate(-15deg);
+    }
+
+    .qr-container {
+        max-width: 500px;
+        margin: 0 auto 3rem;
+        padding: 2rem;
+        background: white;
+        border-radius: 10px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        animation: slideInLeft 0.8s ease-out;
+    }
+
+    .qr-title {
+        font-family: 'Montserrat', sans-serif;
+        font-size: 1.8rem;
+        color: var(--dark-color);
+        margin-bottom: 1.5rem;
+        position: relative;
+        padding-bottom: 0.8rem;
+    }
+
+    .qr-title::after {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 80px;
+        height: 3px;
+        background: var(--primary-color);
+        border-radius: 2px;
+    }
+
+    .qr-image {
+        width: 100%;
+        max-width: 300px;
+        height: auto;
+        margin: 1rem auto;
+        border: 10px solid white;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+    }
+
+    .qr-image:hover {
+        transform: scale(1.03);
+    }
+
+    .upi-id {
+        font-size: 1.3rem;
+        font-weight: 600;
+        color: var(--dark-color);
+        background: rgba(255, 215, 0, 0.2);
+        padding: 1rem;
+        border-radius: 8px;
+        display: inline-block;
+        margin: 1rem 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        word-break: break-all;
+    }
+
+    .upi-id:hover {
+        background: var(--primary-color);
+        transform: translateY(-3px);
+    }
+
+    .instructions {
+        margin-top: 1.5rem;
+        color: #666;
+        font-size: 0.9rem;
+    }
+
+    .floating-ganesha {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 100px;
+        animation: float 6s ease-in-out infinite;
+        z-index: 100;
+        filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
+    }
+
+    @media (max-width: 768px) {
+        .qr-container {
+            padding: 1.5rem;
+            margin: 0 1rem 2rem;
+        }
+        
+        .qr-title {
+            font-size: 1.5rem;
+        }
+        
+        .upi-id {
+            font-size: 1.1rem;
+            padding: 0.8rem;
+        }
+        
+        .floating-ganesha {
+            width: 70px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .qr-title {
+            font-size: 1.3rem;
+        }
+        
+        .back-btn {
+            padding: 0.8rem 1.5rem;
+            font-size: 0.9rem;
+        }
+        
+        .qr-image {
+            max-width: 250px;
+        }
+    }
+</style>
+<body>
+    <a href="index.html" class="back-btn">
+        <i class="fas fa-arrow-left"></i> Back To Main Page
+    </a>
+    
+    <div class="qr-container">
+        <h2 class="qr-title">Scan to Donate</h2>
+        <img src="qr.jpg" alt="UPI QR Code" class="qr-image">
+        <div class="upi-id" id="upiId">UPI: 8050098299@kotak811</div>
+        <p class="instructions">Scan the QR code using any UPI payment app or copy the UPI ID above</p>
+    </div>
+    
+    <!-- <img src="https://cdn-icons-png.flaticon.com/512/2109/2109797.png" alt="Floating Ganesha" class="floating-ganesha"> -->
+
+    <script>
+        // Copy UPI ID to clipboard
+        document.getElementById('upiId').addEventListener('click', function() {
+            navigator.clipboard.writeText('8050098299@kotak811').then(() => {
+                alert('UPI ID copied to clipboard!');
+            });
+        });
+    </script>
+</body>
+</html>
