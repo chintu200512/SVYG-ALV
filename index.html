@@ -81,6 +81,8 @@
             color: var(--primary-color) !important;
             text-shadow: 0 0 10px rgba(255, 215, 0, 0.3);
             letter-spacing: 1px;
+            text-decoration: none;
+            display: inline-block;
         }
 
         .navbar-brand:hover {
@@ -118,6 +120,8 @@
             overflow: hidden;
             border-radius: 10px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            background-size: cover;
+            background-position: center;
         }
 
         .hero-section::before {
@@ -229,6 +233,22 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 1.5rem;
         }
+        .countdown-section {
+    background: linear-gradient(135deg, #daa520, #ffd700, #daa520);
+    /* Remove the ::before pseudo-element */
+    box-shadow: 0 10px 30px rgba(218, 165, 32, 0.3);
+}
+
+.countdown-item {
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(5px);
+    border: 1px solid rgba(255, 215, 0, 0.5);
+}
+
+.countdown-number {
+    color: white;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
 
         .team-member {
             background: white;
@@ -304,6 +324,9 @@
             font-weight: 600;
             box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
             transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
         }
 
         .payment-btn:hover {
@@ -317,81 +340,157 @@
             margin-right: 8px;
         }
 
-        .gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 1.5rem;
+        /* Festival Highlights Section */
+        .highlights-section {
             margin-bottom: 3rem;
         }
 
-        .gallery-item {
-            position: relative;
+        .highlight-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .highlight-card {
+            background: white;
+            border-radius: 10px;
             overflow: hidden;
-            border-radius: 8px;
-            box-shadow: 0 10px 25px rgba(253, 250, 34, 0.973);
-            height: 250px;
-            transition: all 0.3s ease;
-        }
-
-        .gallery-item:hover {
-            transform: scale(1.03);
-            box-shadow: 0 5px 15px rgba(135, 246, 250, 0.911);
-        }
-
-        .gallery-item video {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-            background: #000;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.5s ease;
-        }
-
-        .gallery-item:hover img,
-        .gallery-item:hover video {
-            transform: scale(1.1);
-        }
-
-        .gallery-caption {
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(0, 0, 0, 0.7);
-            color: white;
-            padding: 1rem;
-            transform: translateY(100%);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
             transition: transform 0.3s ease;
         }
 
-        .gallery-item:hover .gallery-caption {
-            transform: translateY(0);
+        .highlight-card:hover {
+            transform: translateY(-10px);
         }
 
-        .video-fallback {
+        .highlight-img {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .highlight-content {
+            padding: 1.5rem;
+        }
+
+        .highlight-title {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .highlight-desc {
+            color: var(--text-color);
+            margin-bottom: 1rem;
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(26, 26, 26, 0.9));
+            color: white;
+            padding: 3rem;
+            border-radius: 10px;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .countdown-section::before {
+            content: '';
             position: absolute;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            background: #000;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 2;
-            cursor: pointer;
+            background: url('https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
+            opacity: 0.3;
+            z-index: 0;
         }
 
-        .video-fallback-icon {
-            font-size: 3rem;
+        .countdown-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .countdown-title {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--primary-color);
+        }
+
+        .countdown-subtitle {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .countdown-item {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1.5rem;
+            min-width: 100px;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .countdown-number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+        }
+
+        .countdown-label {
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Schedule Section */
+        .schedule-section {
+            margin-bottom: 3rem;
+        }
+
+        .schedule-table {
+            width: 100%;
+            border-collapse: collapse;
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .schedule-table th, 
+        .schedule-table td {
+            padding: 1rem;
+            text-align: left;
+            border-bottom: 1px solid #eee;
+        }
+
+        .schedule-table th {
+            background-color: var(--secondary-color);
             color: white;
-            opacity: 0.8;
+            font-weight: 600;
+        }
+
+        .schedule-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        .schedule-table tr:hover {
+            background-color: rgba(255, 153, 51, 0.1);
+        }
+
+        .schedule-time {
+            font-weight: 600;
+            color: var(--secondary-color);
+            white-space: nowrap;
         }
 
         footer {
@@ -484,17 +583,6 @@
             color: #aaa;
         }
 
-        .floating-ganesha {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 100px;
-            animation: float 6s ease-in-out infinite;
-            z-index: 100;
-            filter: drop-shadow(0 5px 15px rgba(0, 0, 0, 0.3));
-            cursor: pointer;
-        }
-
         /* UPI Payment Modal */
         .modal {
             display: none;
@@ -565,7 +653,7 @@
                 font-size: 1.8rem;
             }
             
-            .about-ganesha, .donation-section {
+            .about-ganesha, .donation-section, .countdown-section {
                 padding: 1.5rem;
             }
 
@@ -573,16 +661,12 @@
                 font-size: 1rem;
                 text-align: justify;
             }
-            
-            .floating-ganesha {
-                width: 70px;
-            }
 
             .team-member-name {
                 font-size: 1.1rem;
             }
 
-            .donation-title {
+            .donation-title, .countdown-title {
                 font-size: 1.5rem;
             }
 
@@ -603,8 +687,18 @@
                 justify-content: center;
             }
 
-            .gallery {
-                grid-template-columns: 1fr;
+            .countdown-item {
+                min-width: 80px;
+                padding: 1rem;
+            }
+
+            .countdown-number {
+                font-size: 2rem;
+            }
+
+            .schedule-table {
+                display: block;
+                overflow-x: auto;
             }
 
             .footer-content {
@@ -634,20 +728,29 @@
                 padding: 0.6rem 1.5rem;
                 font-size: 0.9rem;
             }
+
+            .countdown-item {
+                min-width: 70px;
+                padding: 0.8rem;
+            }
+
+            .countdown-number {
+                font-size: 1.8rem;
+            }
         }
     </style>
 </head>
 <body>
     <header>           
        <nav class="navbar">
-            <a class="navbar-brand" href="index.html">
+            <a class="navbar-brand" href="#">
                 <i class="fas fa-om"></i> Sri Vinayaka Youth Group<br> Alavatta
             </a>
         </nav>
     </header>
     
     <main>
-       <section class="hero-section" style="background-image: url('ganesha.jpg'); background-size: cover; margin-top: 1.5rem; background-position: center;">
+       <section class="hero-section" style="background-image: url('ganesha.jpg'); margin-top: 1.5rem;">
             <div class="hero-content">
                 <h1 class="hero-title">Ganesha Chaturthi 2025</h1>
                 <p class="hero-subtitle">Celebrating the arrival of Lord Ganesha with devotion and joy</p>
@@ -657,44 +760,113 @@
 
         <section class="about-ganesha">
             <h2 class="section-title">About Ganesha Chaturthi</h2>
-            <p>Ganesha Chaturthi, also known as Vinayaka Chavithi, is a Hindu festival celebrating the birth of Lord Ganesha, the elephant-headed god of wisdom and prosperity. This 10-day festival begins on the fourth day (Chaturthi) of the Hindu lunisolar calendar month Bhadrapada (August-September).</p>
+            <p>Ganesha Chaturthi, also known as Vinayaka Chavithi, is a Hindu festival celebrating the birth of Lord Ganesha, the elephant-headed god of wisdom and prosperity. This 5-day festival begins on the fourth day (Chaturthi) of the Hindu lunisolar calendar month Bhadrapada (August-September).</p>
             
             <p>In our village Alavatta, we celebrate this festival with great enthusiasm. The youth group organizes various cultural programs, puja ceremonies, and community feasts. The idol of Lord Ganesha is installed with great devotion, and we perform daily aarti and offerings.</p>
             
             <p>The festival culminates on Ananta Chaturdashi when the idol is taken through the village in a grand procession accompanied by music and dance, and finally immersed in water, symbolizing a ritual see-off of the Lord in his journey towards his abode in Kailash while taking away with him the misfortunes of his devotees.</p>
         </section>
 
-        <section class="gallery">
-            <div class="gallery-item">
-                <video autoplay muted loop playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;background:#000;">
-                    <source src="idle.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-                <div class="video-fallback" style="display:none;">
-                    <i class="fas fa-play video-fallback-icon"></i>
+        <!-- Countdown Section -->
+        <section class="countdown-section" style="background-image: url('pooja.png'); margin-top: 1.5rem;">
+            <div class="countdown-content">
+                <h2 class="countdown-title">Countdown to Ganesha Chaturthi 2025</h2>
+                <p class="countdown-subtitle">Festival begins on August 27, 2025</p>
+                <div class="countdown-timer">
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="days">00</div>
+                        <div class="countdown-label">Days</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="hours">00</div>
+                        <div class="countdown-label">Hours</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="minutes">00</div>
+                        <div class="countdown-label">Minutes</div>
+                    </div>
+                    <div class="countdown-item">
+                        <div class="countdown-number" id="seconds">00</div>
+                        <div class="countdown-label">Seconds</div>
+                    </div>
                 </div>
-                <div class="gallery-caption">Ganesha Idol Installation</div>
             </div>
-            <div class="gallery-item">
-                <video autoplay muted loop playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;background:#000;">
-                    <source src="pooja.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-                <div class="video-fallback" style="display:none;">
-                    <i class="fas fa-play video-fallback-icon"></i>
+        </section>
+
+        <!-- Festival Highlights Section -->
+        <section class="highlights-section">
+            <h2 class="section-title">Festival Highlights</h2>
+            <div class="highlight-cards">
+                <div class="highlight-card">
+                    <img src="pooja.png" alt="Ganesha Idol" class="highlight-img">
+                    <div class="highlight-content">
+                        <h3 class="highlight-title">Grand Idol Installation</h3>
+                        <p class="highlight-desc">Witness the ceremonial installation of the beautifully decorated Lord Ganesha idol with traditional Vedic rituals.</p>
+                    </div>
                 </div>
-                <div class="gallery-caption">Daily Puja Ceremony</div>
-            </div>
-            <div class="gallery-item">
-                <video autoplay muted loop playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;background:#000;">
-                    <source src="cultural activities.mp4" type="video/mp4">
-                    Your browser does not support HTML5 video.
-                </video>
-                <div class="video-fallback" style="display:none;">
-                    <i class="fas fa-play video-fallback-icon"></i>
+                <div class="highlight-card">
+                    <img src="" alt="Cultural Programs" class="highlight-img">
+                    <div class="highlight-content">
+                        <h3 class="highlight-title">Cultural Programs</h3>
+                        <p class="highlight-desc">Enjoy vibrant performances including classical dances, devotional songs, and drama depicting Lord Ganesha's stories.</p>
+                    </div>
                 </div>
-                <div class="gallery-caption">Cultural Programs</div>
+                <div class="highlight-card">
+                    <img src="https://images.unsplash.com/photo-1605000797499-95a51c5269ae?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Community Feast" class="highlight-img">
+                    <div class="highlight-content">
+                        <h3 class="highlight-title">Community Feast</h3>
+                        <p class="highlight-desc">Participate in the grand community feast featuring traditional delicacies prepared as offerings to Lord Ganesha.</p>
+                    </div>
+                </div>
             </div>
+        </section>
+
+        <!-- Festival Schedule Section -->
+        <section class="schedule-section">
+            <h2 class="section-title">Festival Schedule</h2>
+            <table class="schedule-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>Time</th>
+                        <th>Event</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>August 27, 2025</td>
+                        <td class="schedule-time">6:00 AM</td>
+                        <td>Ganesha Idol Installation (Prana Pratishtha)</td>
+                    </tr>
+                    <tr>
+                        <td>August 27-31, 2025</td>
+                        <td class="schedule-time">7:00 AM & 7:00 PM</td>
+                        <td>Daily Aarti and Puja</td>
+                    </tr>
+                    <tr>
+                        <td>August 28, 2025</td>
+                        <td class="schedule-time">6:30 PM</td>
+                        <td>Cultural Program -  Dance Performances</td>
+                    </tr>
+                    <tr>
+                        <td>August 29, 2025</td>
+                        <td class="schedule-time">6:30 PM</td>
+                        <td>Bhajan Sandhya - Devotional Songs</td>
+                    </tr>
+                    
+                    <tr>
+                        <td>August 30, 2025</td>
+                        <td class="schedule-time">12:00 PM</td>
+                        <td>Community Feast (Prasadam Distribution)</td>
+                    </tr>
+                    <tr>
+                        <td>August 31, 2025</td>
+                        <td class="schedule-time">4:00 PM</td>
+                        <td>Grand Procession (Visarjan Preparation)</td>
+                    </tr>
+                    
+                </tbody>
+            </table>
         </section>
 
         <section class="team-section">
@@ -737,10 +909,9 @@
                     <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png" alt="PhonePe">
                     Pay with Any UPI
                 </a>
-                <a href="qr.html" class="payment-btn" id="showQrBtn">
-                    <img src="scanner.webp" alt="QR Code">
-                    Show QR Code
-                </a>
+                <button class="payment-btn" id="showQrBtn">
+                    <i class="fas fa-qrcode"></i> Show QR Code
+                </button>
             </div>
         </section>
     </main>
@@ -755,7 +926,7 @@
             <div class="footer-section">
                 <h3 class="footer-title">Connect With Us</h3>
                 <div class="social-links">
-                    <a href="https://www.instagram.com/bappa_offical_squad?igsh=MWU4amFtMDlhM3JhaQ==" target="_blank"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.instagram.com/bappa_offical_squad?igsh=MWU4amFtMDlhM3JhaQ==" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
                 </div>
                 <p style="margin-top: 1.5rem;">Email: workforme650@gmail.com</p>
                 <p>Phone: +91 8050098299</p>
@@ -779,79 +950,14 @@
     </div>
 
     <script>
-        // Enhanced video playback for all devices
         document.addEventListener('DOMContentLoaded', function() {
-            const videos = document.querySelectorAll('video[autoplay]');
-            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-            
-            // Function to handle video playback
-            const handleVideoPlayback = (video) => {
-                // First try to play automatically
-                const playPromise = video.play();
-                
-                if (playPromise !== undefined) {
-                    playPromise.catch(error => {
-                        // Show fallback play button if autoplay fails
-                        const fallback = video.nextElementSibling;
-                        if (fallback && fallback.classList.contains('video-fallback')) {
-                            fallback.style.display = 'flex';
-                            
-                            // Click handler for fallback
-                            fallback.addEventListener('click', function() {
-                                video.play()
-                                    .then(() => {
-                                        fallback.style.display = 'none';
-                                    })
-                                    .catch(e => {
-                                        console.log('Playback failed:', e);
-                                    });
-                            });
-                        }
-                    });
-                }
-            };
-            
-            // For each video element
-            videos.forEach(video => {
-                // iOS specific fix - load metadata first
-                video.load();
-                
-                // Add event listeners
-                video.addEventListener('loadedmetadata', () => {
-                    // On mobile, we wait for user interaction
-                    if (!isMobile) {
-                        handleVideoPlayback(video);
-                    }
-                });
-                
-                // For mobile devices, we need user interaction
-                if (isMobile) {
-                    // Add a one-time click handler to the document
-                    const playVideosOnInteraction = () => {
-                        videos.forEach(v => {
-                            handleVideoPlayback(v);
-                        });
-                        document.removeEventListener('click', playVideosOnInteraction);
-                        document.removeEventListener('touchstart', playVideosOnInteraction);
-                    };
-                    
-                    document.addEventListener('click', playVideosOnInteraction);
-                    document.addEventListener('touchstart', playVideosOnInteraction);
-                }
-                
-                // Also try to play when page becomes visible
-                document.addEventListener('visibilitychange', () => {
-                    if (!document.hidden) {
-                        handleVideoPlayback(video);
-                    }
-                });
-            });
-
             // UPI Payment functionality
             document.getElementById('upiId').addEventListener('click', function(e) {
                 e.preventDefault();
                 navigator.clipboard.writeText('8050098299@kotak811').then(() => {
                     alert('UPI ID copied to clipboard!');
+                }).catch(err => {
+                    console.error('Failed to copy UPI ID: ', err);
                 });
             });
 
@@ -860,8 +966,7 @@
             const btn = document.getElementById('showQrBtn');
             const span = document.getElementsByClassName('close')[0];
 
-            btn.onclick = function(e) {
-                e.preventDefault();
+            btn.onclick = function() {
                 modal.style.display = 'block';
             }
 
@@ -874,6 +979,26 @@
                     modal.style.display = 'none';
                 }
             }
+
+            // Countdown Timer
+            function updateCountdown() {
+                const festivalDate = new Date('August 26, 2025 00:00:00').getTime();
+                const now = new Date().getTime();
+                const distance = festivalDate - now;
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+                document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+                document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+                document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+            }
+
+            updateCountdown();
+            setInterval(updateCountdown, 1000);
         });
     </script>
 </body>
