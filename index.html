@@ -374,13 +374,24 @@
             transform: translateY(0);
         }
 
-        .video-loading {
+        .video-fallback {
             position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2;
+            cursor: pointer;
+        }
+
+        .video-fallback-icon {
+            font-size: 3rem;
             color: white;
-            z-index: 1;
+            opacity: 0.8;
         }
 
         footer {
@@ -538,53 +549,6 @@
             padding: 10px;
         }
 
-        /* Video Play Button */
-        .video-play-button {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 60px;
-            height: 60px;
-            background: rgba(255, 255, 255, 0.2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            z-index: 10;
-            transition: all 0.3s ease;
-        }
-
-        .video-play-button i {
-            color: white;
-            font-size: 24px;
-            margin-left: 5px;
-        }
-
-        .video-play-button:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: translate(-50%, -50%) scale(1.1);
-        }
-
-        /* Video Container */
-        .video-container {
-            position: relative;
-            width: 100%;
-            height: 100%;
-        }
-
-        /* Video Poster */
-        .video-poster {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: 2;
-        }
-
         /* Mobile Responsive Styles */
         @media (max-width: 768px) {
             .hero-title {
@@ -670,11 +634,6 @@
                 padding: 0.6rem 1.5rem;
                 font-size: 0.9rem;
             }
-            
-            .video-play-button {
-                width: 50px;
-                height: 50px;
-            }
         }
     </style>
 </head>
@@ -707,38 +666,32 @@
 
         <section class="gallery">
             <div class="gallery-item">
-                <div class="video-container">
-                    <video id="video1" playsinline webkit-playsinline preload="metadata" poster="video1-poster.jpg">
-                        <source src="idle.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
-                    </video>
-                    <div class="video-play-button" data-video="video1">
-                        <i class="fas fa-play"></i>
-                    </div>
+                <video autoplay muted loop playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;background:#000;">
+                    <source src="idle.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+                <div class="video-fallback" style="display:none;">
+                    <i class="fas fa-play video-fallback-icon"></i>
                 </div>
                 <div class="gallery-caption">Ganesha Idol Installation</div>
             </div>
             <div class="gallery-item">
-                <div class="video-container">
-                    <video id="video2" playsinline webkit-playsinline preload="metadata" poster="video2-poster.jpg">
-                        <source src="pooja.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
-                    </video>
-                    <div class="video-play-button" data-video="video2">
-                        <i class="fas fa-play"></i>
-                    </div>
+                <video autoplay muted loop playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;background:#000;">
+                    <source src="pooja.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+                <div class="video-fallback" style="display:none;">
+                    <i class="fas fa-play video-fallback-icon"></i>
                 </div>
                 <div class="gallery-caption">Daily Puja Ceremony</div>
             </div>
             <div class="gallery-item">
-                <div class="video-container">
-                    <video id="video3" playsinline webkit-playsinline preload="metadata" >
-                        <source src="cultural.mp4" type="video/mp4">
-                        Your browser does not support HTML5 video.
-                    </video>
-                    <div class="video-play-button" data-video="video3">
-                        <i class="fas fa-play"></i>
-                    </div>
+                <video autoplay muted loop playsinline webkit-playsinline preload="auto" style="width:100%;height:100%;object-fit:cover;background:#000;">
+                    <source src="cultural activities.mp4" type="video/mp4">
+                    Your browser does not support HTML5 video.
+                </video>
+                <div class="video-fallback" style="display:none;">
+                    <i class="fas fa-play video-fallback-icon"></i>
                 </div>
                 <div class="gallery-caption">Cultural Programs</div>
             </div>
@@ -826,81 +779,80 @@
     </div>
 
     <script>
+        // Enhanced video playback for all devices
         document.addEventListener('DOMContentLoaded', function() {
-            // Video Playback Functionality
-            const videoPlayButtons = document.querySelectorAll('.video-play-button');
+            const videos = document.querySelectorAll('video[autoplay]');
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
             
-            videoPlayButtons.forEach(button => {
-                button.addEventListener('click', function() {
-                    const videoId = this.getAttribute('data-video');
-                    const video = document.getElementById(videoId);
-                    const container = this.parentElement;
-                    
-                    if (video.paused) {
-                        // Play the video
-                        video.play()
-                            .then(() => {
-                                this.style.display = 'none';
-                                // Hide the poster image if it exists
-                                const poster = container.querySelector('.video-poster');
-                                if (poster) poster.style.display = 'none';
-                            })
-                            .catch(error => {
-                                console.error('Error attempting to play video:', error);
-                                // Fallback: Show a message to the user
-                                alert('Please tap the video to play. Some mobile devices require user interaction to play videos.');
-                            });
-                    }
-                });
-            });
-            
-            // When video ends, show play button again
-            document.querySelectorAll('video').forEach(video => {
-                video.addEventListener('ended', function() {
-                    const container = this.parentElement;
-                    const playButton = container.querySelector('.video-play-button');
-                    if (playButton) playButton.style.display = 'flex';
-                });
+            // Function to handle video playback
+            const handleVideoPlayback = (video) => {
+                // First try to play automatically
+                const playPromise = video.play();
                 
-                // Pause other videos when one is playing
-                video.addEventListener('play', function() {
-                    document.querySelectorAll('video').forEach(v => {
-                        if (v !== this && !v.paused) {
-                            v.pause();
-                            const vContainer = v.parentElement;
-                            const vPlayButton = vContainer.querySelector('.video-play-button');
-                            if (vPlayButton) vPlayButton.style.display = 'flex';
+                if (playPromise !== undefined) {
+                    playPromise.catch(error => {
+                        // Show fallback play button if autoplay fails
+                        const fallback = video.nextElementSibling;
+                        if (fallback && fallback.classList.contains('video-fallback')) {
+                            fallback.style.display = 'flex';
+                            
+                            // Click handler for fallback
+                            fallback.addEventListener('click', function() {
+                                video.play()
+                                    .then(() => {
+                                        fallback.style.display = 'none';
+                                    })
+                                    .catch(e => {
+                                        console.log('Playback failed:', e);
+                                    });
+                            });
                         }
                     });
-                });
-            });
+                }
+            };
             
-            // Also allow clicking on the video itself to play/pause
-            document.querySelectorAll('.video-container').forEach(container => {
-                container.addEventListener('click', function(e) {
-                    if (e.target.tagName !== 'VIDEO' && e.target.tagName !== 'I') {
-                        const video = this.querySelector('video');
-                        const playButton = this.querySelector('.video-play-button');
-                        
-                        if (video.paused) {
-                            video.play()
-                                .then(() => {
-                                    if (playButton) playButton.style.display = 'none';
-                                })
-                                .catch(error => {
-                                    console.error('Error attempting to play video:', error);
-                                });
-                        } else {
-                            video.pause();
-                            if (playButton) playButton.style.display = 'flex';
-                        }
+            // For each video element
+            videos.forEach(video => {
+                // iOS specific fix - load metadata first
+                video.load();
+                
+                // Add event listeners
+                video.addEventListener('loadedmetadata', () => {
+                    // On mobile, we wait for user interaction
+                    if (!isMobile) {
+                        handleVideoPlayback(video);
+                    }
+                });
+                
+                // For mobile devices, we need user interaction
+                if (isMobile) {
+                    // Add a one-time click handler to the document
+                    const playVideosOnInteraction = () => {
+                        videos.forEach(v => {
+                            handleVideoPlayback(v);
+                        });
+                        document.removeEventListener('click', playVideosOnInteraction);
+                        document.removeEventListener('touchstart', playVideosOnInteraction);
+                    };
+                    
+                    document.addEventListener('click', playVideosOnInteraction);
+                    document.addEventListener('touchstart', playVideosOnInteraction);
+                }
+                
+                // Also try to play when page becomes visible
+                document.addEventListener('visibilitychange', () => {
+                    if (!document.hidden) {
+                        handleVideoPlayback(video);
                     }
                 });
             });
 
             // UPI Payment functionality
-            document.getElementById('upiId').addEventListener('click', function() {
-                window.location.href = 'upi://pay?pa=8050098299@kotak811&pn=Sri%20Vinayaka%20Youth%20Group&am=&cu=INR';
+            document.getElementById('upiId').addEventListener('click', function(e) {
+                e.preventDefault();
+                navigator.clipboard.writeText('8050098299@kotak811').then(() => {
+                    alert('UPI ID copied to clipboard!');
+                });
             });
 
             // Modal functionality
@@ -921,36 +873,6 @@
                 if (event.target == modal) {
                     modal.style.display = 'none';
                 }
-            }
-
-            // Copy UPI ID to clipboard
-            document.getElementById('upiId').addEventListener('click', function(e) {
-                e.preventDefault();
-                navigator.clipboard.writeText('8050098299@kotak811').then(() => {
-                    alert('UPI ID copied to clipboard!');
-                });
-            });
-            
-            // iOS specific video handling
-            const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) || 
-                         (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
-            
-            if (isIOS) {
-                // For iOS, we need to handle videos differently
-                document.querySelectorAll('video').forEach(video => {
-                    // Remove autoplay and muted attributes for iOS
-                    video.removeAttribute('autoplay');
-                    video.removeAttribute('muted');
-                    
-                    // Add inline play attribute
-                    video.setAttribute('playsinline', '');
-                    video.setAttribute('webkit-playsinline', '');
-                    
-                    // Show play button by default
-                    const container = video.parentElement;
-                    const playButton = container.querySelector('.video-play-button');
-                    if (playButton) playButton.style.display = 'flex';
-                });
             }
         });
     </script>
