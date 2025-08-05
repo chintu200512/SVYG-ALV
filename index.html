@@ -790,26 +790,26 @@
                     <tr>
                         <td>August 27-31, 2025</td>
                         <td class="schedule-time">7:00 AM & 7:00 PM</td>
-                        <td>Daily Aarti and Puja</td>
+                        <td>Daily Aarti and Puja || Community Feast (Prasadam Distribution)</td>
                     </tr>
                     <tr>
                         <td>August 28, 2025</td>
-                        <td class="schedule-time">6:30 PM</td>
+                        <td class="schedule-time">8:00 PM</td>
                         <td>Cultural Program - Dance Performances</td>
                     </tr>
                     <tr>
                         <td>August 29, 2025</td>
-                        <td class="schedule-time">6:30 PM</td>
-                        <td>Bhajan Sandhya - Devotional Songs</td>
+                        <td class="schedule-time">8:00 PM</td>
+                        <td>Games For All Participents ('Music Chair','StandUp Comedy'etc)</td>
                     </tr>
                     <tr>
                         <td>August 30, 2025</td>
-                        <td class="schedule-time">12:00 PM</td>
-                        <td>Community Feast (Prasadam Distribution)</td>
+                        <td class="schedule-time">8:00 PM</td>
+                        <td>Bhajana Sandhya - Devotional Songs</td>
                     </tr>
                     <tr>
                         <td>August 31, 2025</td>
-                        <td class="schedule-time">4:00 PM</td>
+                        <td class="schedule-time">1:00 PM</td>
                         <td>Grand Procession (Visarjan Preparation)</td>
                     </tr>
                 </tbody>
@@ -843,6 +843,7 @@
                 <li class="team-member">
                     <h3 class="team-member-name">Nandish </h3>
                 </li>
+                
             </ul>
         </section>
         
@@ -901,76 +902,148 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h3 class="modal-title">Scan QR Code to Donate</h3>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=8050098299@kotak811&pn=Sri%20Vinayaka%20Youth%20Group&am=&cu=INR" alt="UPI QR Code" class="qr-code">
+            <img src="qr.jpg" alt="UPI QR Code" class="qr-code">
             <p style="text-align: center; margin-bottom: 1rem;">UPI ID: <strong>8050098299@kotak811</strong></p>
             <p style="text-align: center; font-size: 0.9rem;">Scan this QR code with any UPI app to make your donation.</p>
         </div>
     </div>
 
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Improved UPI Payment functionality
-            document.getElementById('upiId').addEventListener('click', function(e) {
-                e.preventDefault();
-                const upiId = '8050098299@kotak811';
-                
-                // Try to open UPI app directly
-                window.location.href = `upi://pay?pa=${upiId}&pn=Sri%20Vinayaka%20Youth%20Group&am=&cu=INR`;
-                
-                // Fallback for devices that don't support upi:// protocol
-                setTimeout(() => {
-                    if (!document.hidden) {
-                        navigator.clipboard.writeText(upiId).then(() => {
-                            alert('UPI ID copied to clipboard! Please paste it in your payment app.');
-                        }).catch(err => {
-                            prompt('Please copy this UPI ID manually:', upiId);
-                        });
-                    }
-                }, 500);
-            });
-
-            // Modal functionality
-            const modal = document.getElementById('upiModal');
-            const btn = document.getElementById('showQrBtn');
-            const span = document.getElementsByClassName('close')[0];
-
-            btn.onclick = function() {
-                modal.style.display = 'block';
-                document.body.style.overflow = 'hidden';
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Improved UPI Payment functionality
+        document.getElementById('upiId').addEventListener('click', function(e) {
+            e.preventDefault();
+            const upiId = '8050098299@kotak811';
+            const upiName = 'Sri Vinayaka Youth Group';
+            
+            // First try to open UPI app directly
+            const upiLinks = [
+                `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=&cu=INR`,
+                `tez://upi/pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`,
+                `paytmmp://upi/pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`,
+                `phonepe://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`,
+                `googlepay://upi/pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`
+            ];
+            
+            // Try each UPI link until one works
+            let linkTried = false;
+            for (let link of upiLinks) {
+                window.location.href = link;
+                linkTried = true;
+                break;
             }
+            
+            // Fallback if no UPI app is available
+            setTimeout(() => {
+                if (linkTried && !document.hidden) {
+                    copyToClipboardWithFeedback(upiId);
+                }
+            }, 600);
+        });
 
-            span.onclick = function() {
+        // Better clipboard function with user feedback
+        function copyToClipboardWithFeedback(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Create and show a feedback element
+                const feedback = document.createElement('div');
+                feedback.textContent = 'UPI ID copied to clipboard!';
+                feedback.style.position = 'fixed';
+                feedback.style.bottom = '20px';
+                feedback.style.left = '50%';
+                feedback.style.transform = 'translateX(-50%)';
+                feedback.style.backgroundColor = 'var(--primary-color)';
+                feedback.style.color = 'var(--dark-color)';
+                feedback.style.padding = '10px 20px';
+                feedback.style.borderRadius = '5px';
+                feedback.style.zIndex = '10000';
+                feedback.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+                document.body.appendChild(feedback);
+                
+                // Remove after 3 seconds
+                setTimeout(() => {
+                    feedback.style.opacity = '0';
+                    setTimeout(() => document.body.removeChild(feedback), 300);
+                }, 3000);
+            }).catch(err => {
+                prompt('Please copy this UPI ID manually:', text);
+            });
+        }
+
+        // Modal functionality with better animations
+        const modal = document.getElementById('upiModal');
+        const btn = document.getElementById('showQrBtn');
+        const span = document.getElementsByClassName('close')[0];
+
+        btn.onclick = function() {
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.animation = 'fadeIn 0.3s';
+            document.body.style.overflow = 'hidden';
+        }
+
+        span.onclick = function() {
+            modal.style.animation = 'fadeOut 0.3s';
+            setTimeout(() => {
                 modal.style.display = 'none';
                 document.body.style.overflow = 'auto';
-            }
+            }, 300);
+        }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.animation = 'fadeOut 0.3s';
+                setTimeout(() => {
                     modal.style.display = 'none';
                     document.body.style.overflow = 'auto';
-                }
+                }, 300);
             }
+        }
 
-            // Countdown Timer
-            function updateCountdown() {
-                const festivalDate = new Date('August 27, 2025 00:00:00').getTime();
-                const now = new Date().getTime();
-                const distance = festivalDate - now;
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-                document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+        // Add fadeOut animation to your CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
             }
+            
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.8);
+                animation: fadeIn 0.3s;
+            }
+        `;
+        document.head.appendChild(style);
 
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-        });
+        // Countdown Timer (unchanged)
+        function updateCountdown() {
+            const festivalDate = new Date('August 27, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = festivalDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    });
+
     </script>
 </body>
 </html>
