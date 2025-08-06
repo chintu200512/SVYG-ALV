@@ -33,11 +33,6 @@
             to { opacity: 1; }
         }
 
-        @keyframes fadeOut {
-            from { opacity: 1; }
-            to { opacity: 0; }
-        }
-
         @keyframes slideInLeft {
             from { transform: translateX(-50px); opacity: 0; }
             to { transform: translateX(0); opacity: 1; }
@@ -117,7 +112,6 @@
         .hero-section {
             position: relative;
             height: 50vh;
-            min-height: 300px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -129,7 +123,6 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
             background-size: cover;
             background-position: center;
-            background-image: url('https://images.unsplash.com/photo-1605000797499-95e51c5335c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
         }
 
         .hero-section::before {
@@ -384,7 +377,7 @@
 
         /* Countdown Section */
         .countdown-section {
-            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(26, 26, 26, 0.9)), url('https://images.unsplash.com/photo-1566438480900-0609be27a4be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background: linear-gradient(135deg, rgba(44, 62, 80, 0.9), rgba(26, 26, 26, 0.9)), url('count.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -586,9 +579,6 @@
             height: 100%;
             overflow: auto;
             background-color: rgba(0,0,0,0.8);
-            animation: fadeIn 0.3s;
-            align-items: center;
-            justify-content: center;
         }
 
         .modal-content {
@@ -599,6 +589,7 @@
             width: 90%;
             max-width: 350px;
             position: relative;
+            animation: fadeIn 0.3s;
         }
 
         .close {
@@ -629,95 +620,6 @@
             display: block;
             border: 1px solid #eee;
             padding: 8px;
-        }
-
-        /* Toast Notification */
-        .toast {
-            position: fixed;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--primary-color);
-            color: var(--dark-color);
-            padding: 12px 24px;
-            border-radius: 5px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
-            z-index: 1001;
-            opacity: 0;
-            transition: opacity 0.3s ease;
-        }
-
-        .toast.show {
-            opacity: 1;
-        }
-
-        /* Mobile Responsive Adjustments */
-        @media (max-width: 767px) {
-            .hero-section {
-                height: 40vh;
-                min-height: 250px;
-            }
-            
-            .hero-title {
-                font-size: 1.8rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 0.9rem;
-            }
-            
-            .section-title {
-                font-size: 1.5rem;
-            }
-            
-            .team-list {
-                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
-            }
-            
-            .schedule-table {
-                font-size: 0.8rem;
-            }
-            
-            .schedule-table th, 
-            .schedule-table td {
-                padding: 0.6rem;
-            }
-            
-            .countdown-item {
-                min-width: 60px;
-                padding: 0.8rem;
-            }
-            
-            .countdown-number {
-                font-size: 1.5rem;
-            }
-            
-            .highlight-cards {
-                grid-template-columns: 1fr;
-            }
-            
-            .payment-btn {
-                max-width: 100%;
-            }
-        }
-
-        /* Tablet Styles */
-        @media (min-width: 768px) and (max-width: 991px) {
-            .hero-section {
-                height: 50vh;
-            }
-            
-            .hero-title {
-                font-size: 2.5rem;
-            }
-            
-            .hero-subtitle {
-                font-size: 1.1rem;
-            }
-            
-            .highlight-cards {
-                grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            }
         }
 
         /* Desktop Styles */
@@ -797,7 +699,7 @@
     </header>
     
     <main>
-       <section class="hero-section">
+       <section class="hero-section" style="background-image: url('ganesha.jpg');">
             <div class="hero-content">
                 <h1 class="hero-title">Ganesha Chaturthi 2025</h1>
                 <p class="hero-subtitle">Celebrating the arrival of Lord Ganesha with devotion and joy</p>
@@ -845,21 +747,21 @@
             <h2 class="section-title">Festival Highlights</h2>
             <div class="highlight-cards">
                 <div class="highlight-card">
-                    <img src="https://images.unsplash.com/photo-1605000797499-95e51c5335c0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ganesha Idol Installation" class="highlight-img">
+                    <img src="pooja.png" alt="Ganesha Idol Installation" class="highlight-img">
                     <div class="highlight-content">
                         <h3 class="highlight-title">Grand Idol Installation</h3>
                         <p class="highlight-desc">Witness the ceremonial installation of the beautifully decorated Lord Ganesha idol with traditional Vedic rituals.</p>
                     </div>
                 </div>
                 <div class="highlight-card">
-                    <img src="https://images.unsplash.com/photo-1566438480900-0609be27a4be?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Cultural Programs" class="highlight-img">
+                    <img src="lord.jpg" alt="Cultural Programs" class="highlight-img">
                     <div class="highlight-content">
                         <h3 class="highlight-title">Cultural Programs</h3>
                         <p class="highlight-desc">Enjoy vibrant performances including classical dances, devotional songs, and drama depicting Lord Ganesha's stories.</p>
                     </div>
                 </div>
                 <div class="highlight-card">
-                    <img src="https://images.unsplash.com/photo-1606923829579-0cb981a83e2e?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Community Feast" class="highlight-img">
+                    <img src="prasadam.jpg" alt="Community Feast" class="highlight-img">
                     <div class="highlight-content">
                         <h3 class="highlight-title">Community Feast</h3>
                         <p class="highlight-desc">Participate in the grand community feast featuring traditional delicacies prepared as offerings to Lord Ganesha.</p>
@@ -941,6 +843,7 @@
                 <li class="team-member">
                     <h3 class="team-member-name">Nandish </h3>
                 </li>
+                
             </ul>
         </section>
         
@@ -950,7 +853,7 @@
             <div class="upi-id" id="upiId">UPI: 8050098299@kotak811</div>
             <p>All donations are used for the festival arrangements and community welfare activities.</p>
             <div class="payment-options">
-                <a href="upi://pay?pa=8050098299@kotak811&pn=Sri%20Vinayaka%20Youth%20Group&am=&cu=INR" class="payment-btn" id="upiPayBtn">
+                <a href="upi://pay?pa=8050098299@kotak811&pn=Sri%20Vinayaka%20Youth%20Group&am=&cu=INR" class="payment-btn">
                     <img src="https://cdn-icons-png.flaticon.com/512/825/825454.png" alt="UPI Payment">
                     Pay with Any UPI
                 </a>
@@ -999,150 +902,148 @@
         <div class="modal-content">
             <span class="close">&times;</span>
             <h3 class="modal-title">Scan QR Code to Donate</h3>
-            <img src="https://api.qrserver.com/v1/create-qr-code/?size=180x180&data=upi://pay?pa=8050098299@kotak811&pn=Sri%20Vinayaka%20Youth%20Group&am=&cu=INR" alt="UPI QR Code" class="qr-code">
+            <img src="qr.jpg" alt="UPI QR Code" class="qr-code">
             <p style="text-align: center; margin-bottom: 1rem;">UPI ID: <strong>8050098299@kotak811</strong></p>
             <p style="text-align: center; font-size: 0.9rem;">Scan this QR code with any UPI app to make your donation.</p>
         </div>
     </div>
 
-    <!-- Toast Notification -->
-    <div class="toast" id="toast"></div>
-
     <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Improved UPI Payment functionality
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        // Improved UPI Payment functionality
+        document.getElementById('upiId').addEventListener('click', function(e) {
+            e.preventDefault();
             const upiId = '8050098299@kotak811';
             const upiName = 'Sri Vinayaka Youth Group';
             
-            // Function to show toast notification
-            function showToast(message, duration = 3000) {
-                const toast = document.getElementById('toast');
-                toast.textContent = message;
-                toast.classList.add('show');
-                
-                setTimeout(() => {
-                    toast.classList.remove('show');
-                }, duration);
+            // First try to open UPI app directly
+            const upiLinks = [
+                `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=&cu=INR`,
+                `tez://upi/pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`,
+                `paytmmp://upi/pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`,
+                `phonepe://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`,
+                `googlepay://upi/pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`
+            ];
+            
+            // Try each UPI link until one works
+            let linkTried = false;
+            for (let link of upiLinks) {
+                window.location.href = link;
+                linkTried = true;
+                break;
             }
             
-            // Function to handle UPI payment
-            function initiateUPIPayment() {
-                const upiLinks = [
-                    `upi://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}&am=&cu=INR`,
-                    `tez://upi/pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`,
-                    `paytmmp://upi/pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`,
-                    `phonepe://pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`,
-                    `googlepay://upi/pay?pa=${upiId}&pn=${encodeURIComponent(upiName)}`
-                ];
-                
-                // Try each UPI link until one works
-                let linkTried = false;
-                for (let link of upiLinks) {
-                    window.location.href = link;
-                    linkTried = true;
-                    break;
+            // Fallback if no UPI app is available
+            setTimeout(() => {
+                if (linkTried && !document.hidden) {
+                    copyToClipboardWithFeedback(upiId);
                 }
+            }, 600);
+        });
+
+        // Better clipboard function with user feedback
+        function copyToClipboardWithFeedback(text) {
+            navigator.clipboard.writeText(text).then(() => {
+                // Create and show a feedback element
+                const feedback = document.createElement('div');
+                feedback.textContent = 'UPI ID copied to clipboard!';
+                feedback.style.position = 'fixed';
+                feedback.style.bottom = '20px';
+                feedback.style.left = '50%';
+                feedback.style.transform = 'translateX(-50%)';
+                feedback.style.backgroundColor = 'var(--primary-color)';
+                feedback.style.color = 'var(--dark-color)';
+                feedback.style.padding = '10px 20px';
+                feedback.style.borderRadius = '5px';
+                feedback.style.zIndex = '10000';
+                feedback.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+                document.body.appendChild(feedback);
                 
-                // Fallback if no UPI app is available
+                // Remove after 3 seconds
                 setTimeout(() => {
-                    if (linkTried && !document.hidden) {
-                        copyToClipboard(upiId);
-                    }
-                }, 600);
-            }
-            
-            // Function to copy UPI ID to clipboard
-            function copyToClipboard(text) {
-                navigator.clipboard.writeText(text).then(() => {
-                    showToast('UPI ID copied to clipboard!');
-                }).catch(err => {
-                    // Fallback for older browsers
-                    const textarea = document.createElement('textarea');
-                    textarea.value = text;
-                    document.body.appendChild(textarea);
-                    textarea.select();
-                    try {
-                        document.execCommand('copy');
-                        showToast('UPI ID copied to clipboard!');
-                    } catch (err) {
-                        showToast('Failed to copy UPI ID. Please copy manually.');
-                    }
-                    document.body.removeChild(textarea);
-                });
-            }
-            
-            // Set up event listeners
-            document.getElementById('upiId').addEventListener('click', function(e) {
-                e.preventDefault();
-                initiateUPIPayment();
+                    feedback.style.opacity = '0';
+                    setTimeout(() => document.body.removeChild(feedback), 300);
+                }, 3000);
+            }).catch(err => {
+                prompt('Please copy this UPI ID manually:', text);
             });
-            
-            document.getElementById('upiPayBtn').addEventListener('click', function(e) {
-                e.preventDefault();
-                initiateUPIPayment();
-            });
+        }
 
-            // Modal functionality
-            const modal = document.getElementById('upiModal');
-            const btn = document.getElementById('showQrBtn');
-            const span = document.getElementsByClassName('close')[0];
+        // Modal functionality with better animations
+        const modal = document.getElementById('upiModal');
+        const btn = document.getElementById('showQrBtn');
+        const span = document.getElementsByClassName('close')[0];
 
-            btn.onclick = function() {
-                modal.style.display = 'flex';
-                document.body.style.overflow = 'hidden';
-            }
+        btn.onclick = function() {
+            modal.style.display = 'flex';
+            modal.style.alignItems = 'center';
+            modal.style.justifyContent = 'center';
+            modal.style.animation = 'fadeIn 0.3s';
+            document.body.style.overflow = 'hidden';
+        }
 
-            span.onclick = function() {
+        span.onclick = function() {
+            modal.style.animation = 'fadeOut 0.3s';
+            setTimeout(() => {
+                modal.style.display = 'none';
+                document.body.style.overflow = 'auto';
+            }, 300);
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
                 modal.style.animation = 'fadeOut 0.3s';
                 setTimeout(() => {
                     modal.style.display = 'none';
                     document.body.style.overflow = 'auto';
                 }, 300);
             }
+        }
 
-            window.onclick = function(event) {
-                if (event.target == modal) {
-                    modal.style.animation = 'fadeOut 0.3s';
-                    setTimeout(() => {
-                        modal.style.display = 'none';
-                        document.body.style.overflow = 'auto';
-                    }, 300);
-                }
-            }
-
-            // Countdown Timer
-            function updateCountdown() {
-                const festivalDate = new Date('August 27, 2025 00:00:00').getTime();
-                const now = new Date().getTime();
-                const distance = festivalDate - now;
-
-                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
-                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
-
-                document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
-                document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
-                document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
-                document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
-            }
-
-            updateCountdown();
-            setInterval(updateCountdown, 1000);
-            
-            // Improved mobile experience
-            function checkMobile() {
-                return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+        // Add fadeOut animation to your CSS
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes fadeOut {
+                from { opacity: 1; }
+                to { opacity: 0; }
             }
             
-            if (checkMobile()) {
-                // Add mobile-specific optimizations
-                document.querySelectorAll('.payment-btn').forEach(btn => {
-                    btn.style.padding = '0.8rem 1.5rem';
-                    btn.style.fontSize = '1rem';
-                });
+            .modal {
+                display: none;
+                position: fixed;
+                z-index: 1000;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0,0,0,0.8);
+                animation: fadeIn 0.3s;
             }
-        });
+        `;
+        document.head.appendChild(style);
+
+        // Countdown Timer (unchanged)
+        function updateCountdown() {
+            const festivalDate = new Date('August 27, 2025 00:00:00').getTime();
+            const now = new Date().getTime();
+            const distance = festivalDate - now;
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerHTML = days.toString().padStart(2, '0');
+            document.getElementById('hours').innerHTML = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').innerHTML = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').innerHTML = seconds.toString().padStart(2, '0');
+        }
+
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+    });
+
     </script>
 </body>
 </html>
